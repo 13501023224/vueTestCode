@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.inLineDisplay{
+			float: left;
+		}
+		.arrows{
+			float: left;
+			vertical-align: middle;;
+		}
+		.cont{
+			height: 400px;
+			width: 1400px;
+			text-align: center;
+			align-items: center;
+			align-self: center;
+			align-content: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="banner" class="cont">
+		<div class="arrows" ><img  @click="changeImgLeft" src="./banner/right.png" alt=""></div>
+		<div class="inLineDisplay"><img :src="imgSrc" alt=""></div>
+		<div class="arrows"><img   @click="changeImgRight" src="./banner/left.png" alt=""></div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+
+			el: "#banner",
+			data:{
+				imgSrc:"./banner/1.jpg",
+				imgOrder:1
+			},
+			methods: {
+				changeImgLeft:function() {
+					// if(this.imgOrder==2){
+					// 	this.imgOrder=4;
+					// }else{
+					// 	this.imgOrder-=this.imgOrder
+					// }
+					
+					if(this.imgOrder<=1){
+						this.imgOrder = 4;
+						this.imgSrc = "./banner/"+this.imgOrder+".jpg"
+					}else{
+						this.imgOrder = this.imgOrder - 1
+						this.imgSrc = "./banner/"+this.imgOrder+".jpg"
+					}
+				},
+				changeImgRight:function() {
+					// if(this.imgOrder==5){
+					// 	this.imgOrder=1
+					// }else{
+					// 	this.imgOrder+=this.imgOrder
+					// }
+					if(this.imgOrder>=4){
+						this.imgOrder = 1;
+						this.imgSrc = "./banner/"+this.imgOrder+".jpg"
+					}else{
+						this.imgOrder = this.imgOrder + 1
+						this.imgSrc = "./banner/"+this.imgOrder+".jpg"
+						console.log(this.imgSrc)
+					}
+					
+				},
+			}
+		})
+	</script>
+</body>
+</html>

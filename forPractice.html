@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<div id="app">
+		<ul>
+			<li v-for="(item,index) in obj">
+				<h2>{{index}}:{{item.name}}</h2>
+			</li>
+		</ul>
+		<button @click="addItem">添加</button><br>
+		<button @click="removeItem">移除</button><br>
+		<input type="text" @keyup.enter="sayHi('你好老铁')">
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: "#app",
+			data:{
+				array1:[1,2,3,4,5],
+				obj:[
+				{
+					name:"lixiaofeng"
+				},
+				{
+					name:"fengfeng"
+				},
+				{
+					name:"hello"
+				},
+				]
+			},
+			methods: {
+				addItem:function () {
+					this.obj.push({"name":"黑马程序员,月薪过万"})
+				},
+				removeItem:function () {
+					this.obj.shift()
+				},
+				sayHi:function(p1){
+					alert(p1);
+				}
+			}
+		})
+	</script>
+</body>
+</html>

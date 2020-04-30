@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+
+</head>
+<body>
+
+	
+	<div id="app">
+		<p v-text="content"></p>
+		<p v-html="content"></p>
+		<button v-on:click="onClick">测试</button>
+		
+		<p v-text="array1[0]"></p>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el:'#app',
+			methods:{
+				onClick:function(){
+					this.content="test test test test",
+					this.array1[0]="天津",
+					console.log("complete")
+				}
+			},						
+			data:{
+				content:'<a href="#">lixiaofeng</a>',
+				message:'i love you vue',
+				object1:{
+					"name":"栗晓峰",
+					"phone":"13501023224"
+				},
+				array1:[
+				"北京",
+				"南京",
+				"杭州",
+				"青岛",
+				]	
+			}
+		})
+
+	</script>
+</body>
+</html>

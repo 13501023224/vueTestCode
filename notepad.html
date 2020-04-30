@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		
+		.appClass{
+			width: 700px;
+			margin-left:500px;
+			margin-top:300px;
+			border: solid;
+			border-radius: 20px;
+			border-color: red;
+			align-items: center;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="app" class="appClass">
+		<div>
+			<br><br>
+			<input type="text" placeholder="请输入" @keyup.enter="inputE"
+			v-model="inputValue" >
+			<br><br>
+		</div>
+		<div >
+			<ul>
+				<li v-for="(item,index) in objs" @mouseover="mouseover(index)" @mouseout="mouseout(index)"> 
+					<h2>{{index}}:{{item.name}} <button v-show="item.statu"  @click="remove('index')">删除</button></h2>
+				</li>
+				
+			</ul>
+			<br><br>
+		</div>
+		<div>
+			<br><br>
+			<span> {{objs.length}}item left</span>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button @click="clearData">clear</button>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+
+			el: "#app",
+			data:{
+				objs:[
+				{
+					"name":"sfaasdfsf",
+					"statu":false
+				},
+				{
+					"name":"sfaasdfsf",
+					"statu":false
+				},
+				{
+					"name":"sfaasdfsf",
+					"statu":false
+				},
+				{
+					"name":"sfaasdfsf",
+					"statu":false
+				},
+				{
+					"name":"sfaasdfsf",
+					"statu":false
+				},
+				],
+				inputValue:"",
+				
+			},
+			methods: {
+				inputE:function () {
+				    console.log("input");
+					this.objs.push({"name":this.inputValue,"statu":false});
+					this.inputValue=""
+				},
+				clearData:function(){
+					this.objs = [];
+				},
+				mouseover:function(index){
+					this.statu = true;
+					this.objs[index].statu=true;
+				},
+				mouseout:function(index){
+					this.statu = false;
+					this.objs[index].statu=false;
+				},
+				remove:function(param){
+					this.objs.splice(param,1)
+				}
+			}
+		})
+	</script>
+</body>
+</html>

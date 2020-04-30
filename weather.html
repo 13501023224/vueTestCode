@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		
+		.appClass{
+			width: 700px;
+			margin-left:500px;
+			margin-top:300px;
+			border: solid;
+			border-radius: 20px;
+			border-color: red;
+			align-items: center;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="app" class="appClass">
+		<div>天知道<br><br><br><br> </div>
+		<div>
+			<input type="text" @keyup.enter="changeCity" v-model="city">
+			<button @click="changeCity">search</button>
+			<br><br>
+		</div>
+		<div>
+			<a href="#" @click="changetCity1('北京')">北京</a>
+			<a href="#" @click="changetCity1('天津')">天津</a>
+			<a href="#" @click="changetCity1('南京')">南京</a>
+			<a href="#" @click="changetCity1('上海')">上海</a>
+			<br><br>
+		</div>
+		<div>
+			<ul>
+				<li v-for="item in weathers">
+					<span>{{item.type}}</span><br>
+					<span>低温{{item.low}}~高温{{item.high}}</span><br>
+					<span>{{item.date}}</span><br><br><br><br><br><br>
+				</li>
+			</ul>
+		
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+		
+		  el: "#app",
+		  data:{
+		  	city:"",
+		  	weathers:[]
+		  },
+		  methods: {
+		    changeCity:function() {
+		      var rec = this;
+		      axios.get("http://wthrcdn.etouch.cn/weather_mini?city="+rec.city).then(
+		      	function(res){
+		      		// that.weathers = res.data.data.for
+		      		// console.log( res.data.data.forecast)
+		      		rec.weathers = res.data.data.forecast;
+		      	},function(erm){
+
+		      	})
+		    },
+		    changetCity1:function(city){
+		    	this.city=city;
+		    	this.changeCity()
+		    }
+		  }
+		
+		})
+	</script>
+</body>
+</html>

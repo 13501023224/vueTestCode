@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>	
+	<div id="app">
+		<button @click="testGet">GET测试</button><br>
+		<button @click="testPost">POST测试</button>
+		<div >
+			
+			<ul>
+				<li v-for="(item,index) in joke">{{item}}</li>
+			</ul>
+		</div>
+	</div>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: "#app",
+			data:{
+				joke:[]
+			},
+			methods: {
+				testGet:function() {
+					var that =this;
+					axios.get("https://autumnfish.cn/api/joke/list?num=6").then(function(res){
+						// console.log(res.data);
+						that.joke=res.data.jokes
+					
+					},function(erm){
+
+					})	
+				},
+				testPost:function(){
+					axios.post("https://autumnfish.cn/api/user/reg",{"username":"lixiaofeng"}).then(
+						function(res){
+							console.log(res)
+						},function(erm){
+							console.log(erm)
+						})
+				}
+			}
+
+		})
+	</script>
+	
+</body>
+</html>

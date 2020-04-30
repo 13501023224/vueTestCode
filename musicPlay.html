@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+
+<body>
+  <div id="app">
+    <button @click="findMusic">findMusic</button>
+    <audio :src="musicUrl">
+  </div>
+  
+    
+  </audio>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    var vm = new Vue({
+    
+      el: "#app",
+      data:{
+        musicUrl:""
+      },
+      methods: {
+        findMusic:function () {
+          var that = this;
+          axios.get("https://autumnfish.cn/search?keywords='李代沫'").then(function(res){
+             // that.musicUrl = res
+             console.log(res.data)
+          },function(erm){})
+        }
+      }
+
+    })
+  </script>
+
+</body>
+</html>

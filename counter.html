@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.fontClass{
+			color: red;
+			font-size: 80px;
+		}
+	</style>
+</head>
+<body>
+	<div id="counter" :class="{fontClass:fontStatu}">
+		<button @click="back">-</button>
+		<span>{{count}}</span>
+		<button @click="plus">+</button>
+		<button v-show="show" @click="onShow">测试</button>
+		<!-- <img :src="url" :title="imgTitle"> -->
+	    <button @click="changeFont">测试一下字体的改变</button>
+		<div v-if="show">
+			<button>显示隐藏</button>
+		</div> 
+		
+     <!--  <img src="https://www.runoob.com/wp-content/uploads/2017/01/vue.png"> -->
+	</div>
+
+	
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: "#counter",
+			data:{
+				"count":0,
+				"show":true,
+				"url":"./index.jpeg",
+				"url1":"./index.jpeg",
+				"imgTitle":"VM",
+				"fontStatu":false
+			},
+			methods: {
+				plus:function () {
+					this.count=this.count+1;
+				},
+				back:function(){
+					this.count =this.count-1;
+				},
+				onShow:function(){
+					this.show=false
+				},
+				changeFont:function(){
+					this.fontStatu=!this.fontStatu
+				}
+			}
+		})
+	</script>
+</body>
+</html>
